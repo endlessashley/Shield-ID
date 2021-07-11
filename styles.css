@@ -1,0 +1,92 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-image: url(https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/6208f106-928e-47bb-80b1-ce55b9e82b98/dyu8dx-956f96a9-d374-454b-8d7c-d16a916cb9b8.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzYyMDhmMTA2LTkyOGUtNDdiYi04MGIxLWNlNTViOWU4MmI5OFwvZHl1OGR4LTk1NmY5NmE5LWQzNzQtNDU0Yi04ZDdjLWQxNmE5MTZjYjliOC5qcGcifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.5NER1lxGPtTMBKi4Ks3bR6M0wxp74Dlkd-RGFBQjTCM);
+    background-size: cover;
+    background-position: center;
+    background-repeat: repeat;
+    max-height: 100%;
+    width: 100%;
+    font-family: 'Special Elite'
+}
+  
+.logo {
+    float: right;
+    max-height: 200px !important;
+    position: relative;
+    padding: 20px
+  }
+  
+  header h1 {
+    float: left;
+    top: 18px;
+    left: 10px;
+    font-size: 48pt;
+    margin-left: 20px;
+    margin-top: 75px;
+  }
+
+  header {
+    height: 200px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .classified {
+    max-height: 125px;
+    padding-top: 10px;
+  }
+
+  .pure-form {
+    padding: 20px;
+    padding-top: 35px;
+    padding-bottom: 35px;
+    border-bottom: double;
+    border-top: double;
+    justify-items: center;
+  }
+
+  .pure-u-2-5 {
+    font-family: 'Special Elite';
+    padding: 20px;
+    font-weight: bolder;
+  }
+
+  .pure-u-3-5 {
+    width: 500px;
+    padding: 20px;
+    background: #E9E2D0;
+    box-shadow: -20px 0 35px -25px black, 20px 0 35px -25px black;
+    margin: 20px;
+  }
+  
+  .pure-u-3-5 img {
+    width: 150px;
+    float: left;
+    border-radius: 5px;
+    margin-right: 20px;
+    -webkit-filter: sepia(1);
+    -moz-filter: sepia(1);
+    filter: sepia(1);
+  }
+
+  .pure-g {
+    border-bottom: double;
+  }
+
+  ul {
+    list-style: none;
+  }
+
+  li {
+    list-style: none;
+  }
+
+  .gifs {
+    padding: 20px;
+  }
