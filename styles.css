@@ -90,3 +90,14 @@ body {
   .gifs {
     padding: 20px;
   }
+
+  .img-wrapper{
+    display: table;
+    height: 140px;
+    width: 200px;
+    table-layout: fixed;
+    float: left;
+    padding-left: 6px;
+    padding-right: 6px;
+    margin-bottom: 12px;
+}
