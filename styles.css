@@ -31,7 +31,6 @@ body {
   }
 
   header {
-    height: 200px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -49,6 +48,7 @@ body {
     border-bottom: double;
     border-top: double;
     justify-items: center;
+    text-align: center;
   }
 
   .pure-u-2-5 {
@@ -79,11 +79,7 @@ body {
     border-bottom: double;
   }
 
-  ul {
-    list-style: none;
-  }
-
-  li {
+  ul, li {
     list-style: none;
   }
 
@@ -113,4 +109,8 @@ img {
 
 .inner img {
   max-width: 350px;
+}
+
+.action-shots {
+  padding: 20px;
 }
