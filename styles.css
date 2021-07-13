@@ -89,6 +89,9 @@ body {
 
   .gifs {
     padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
   }
 
   .img-wrapper{
@@ -100,4 +103,14 @@ body {
     padding-left: 6px;
     padding-right: 6px;
     margin-bottom: 12px;
+    margin-right: 125px;
+    
+}
+
+img {
+  padding: 20px;
+}
+
+.inner img {
+  max-width: 350px;
 }
