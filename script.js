@@ -9,7 +9,7 @@
 
 
 var heroAPI = "https://cors-anywhere.herokuapp.com/https://superheroapi.com/api/4431251130239326/search/";
-var giphyAPI = "http://api.giphy.com/v1/gifs/search?q=";
+var giphyAPI = "https://api.giphy.com/v1/gifs/search?q=";
 var apikey = "&api_key=XnUlKSQw33KcHiZVIv8ReqDGr7nJZwCS&limit=3";
 
 
