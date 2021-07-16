@@ -24,7 +24,7 @@
         <fieldset>
             <h2>Search the S.H.I.E.L.D. database:</h2>
             <input id="searchInput"  type="userInput" placeholder="Search" />
-            <button type="submit" class="pure-button pure-button-active">Submit</button>
+            <button id="submit" class="pure-button pure-button-active">Submit</button>
         </fieldset>
     </form>
 
@@ -45,7 +45,7 @@
 
         <div class="pure-u-3-5">
             <div class="thumbnail"></div>
-            <img class="thumbnailpic" />
+            <img id="thumbnailpic" />
                 <ul id="inforesults" class="heroName"><h3>Name:</h3>
                     <li id="hero-name"><h4>placeholder</h4></li>
                     
@@ -72,16 +72,13 @@
 
 
 <div class="action-shots"><h3>Action Shots:</h3></div>
-    <div class="gifs"></div>        
-
-
+    <div class="gifs"></div>
+        <img id="gif1" class="img-wrapper">
+        <img id="gif2" class="img-wrapper">
+        <img id="gif3" class="img-wrapper">
 
 
 </body>
-<script
-        src="https://code.jquery.com/jquery-3.3.1.js"
-        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-        crossorigin="anonymous"></script>
-        <script src="https://superheroapi.com/api/4431251130239326"> </script>
+ <script src="https://superheroapi.com/api/4431251130239326"> </script>
 <script src="script.js"></script>
 </html>

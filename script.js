@@ -1,52 +1,24 @@
-(function () {
-  function giphySearch(keyword) {
-    return fetch(`http://api.giphy.com/v1/gifs/search?q=${keyword}&api_key=XnUlKSQw33KcHiZVIv8ReqDGr7nJZwCS&limit=3`)
-      .then(response => response.json());
-  }
-  function infoSearch(keyword) {
-    return fetch('https://superheroapi.com/api/4431251130239326/search/' + keyword)
-  }
-  function appendImage(img) {
-    let $div = $('<div class="img-wrapper"></div>');
-    $('<div class="inner"></div>').append(img).appendTo($div);
-    $('.gifs').append($div)
-  }
-  function onImgLoad(img) {
-    return new Promise((resolve, reject) => {
-      img.onload = resolve;
-    });
-  }
-  (function listenOnFormSubmit() {
-    $('.pure-form').submit(async (ev) => {
-      ev.preventDefault();
-      let $input = $('#searchInput');
-      main($input.val());
-      loadJSONFile();
-    });
-  })();
-  async function main(keyword) {
-    const result = await giphySearch(keyword);
-    $('.gifs').html('');
-    let promises = [];
-    result.data.forEach(gif => {
-      let img = new Image();
-      img.src = gif.images.original.url;
-      promises.push(onImgLoad(img));
-      appendImage(img);
-    });
-    await Promise.all(promises);
-  }
-})();
+
+  document.getElementById("submit").addEventListener("click",function() {
+    event.preventDefault();
+    // var input = document.getElementById("searchInput").value;
+    loadJSONFile();
+    loadGifs();
+})
+
+
+
 var heroAPI = "https://cors-anywhere.herokuapp.com/https://superheroapi.com/api/4431251130239326/search/";
-// document.getElementById("submitBtn").onclick = function(event) {
-//     event.preventDefault();
-//     loadJSONFile()};
+var giphyAPI = "http://api.giphy.com/v1/gifs/search?q=";
+var apikey = "&api_key=XnUlKSQw33KcHiZVIv8ReqDGr7nJZwCS&limit=3";
+
+
+
 function loadJSONFile() {
   let input = document.getElementById('searchInput').value
   console.log(input)
   console.log("step 1 done.")
   var searchURL = heroAPI + input;
-  console.log(searchURL);
   fetch(searchURL)
     .then(function (response) {
       return response.json();
@@ -56,14 +28,8 @@ function loadJSONFile() {
       console.log(data.results[0].name);
       console.log(data.results[0].id);
       document.getElementById("hero-name").innerHTML = data.results[0].name;
-      //  document.getElementById("full-name").innerHTML = data.results[0].biography.full-name;
-      //  document.getElementById("alter-egos").innerHTML = data.results[0].biography.alter-egos;
       console.log(data.results[0].image.url);
-      //  document.getElementById("thumbnail").innerHTML.src = data.results[0].image.url;
-      // let $div = $('<img>');
-      $(".thumbnailpic").attr("src",data.results[0].image.url);
-      // $div.append(data.results[0].image.url);
-      // $('.pure-u-3-5').append($div);
+      document.getElementById("thumbnailpic").setAttribute("src", data.results[0].image.url);
       console.log(data.results[0].biography);
       document.getElementById("hero-bio").innerHTML = "here is the publisher:" + data.results[0].biography.publisher;
       document.getElementById("job").innerHTML = "Occupation:" + data.results[0].work.occupation;
@@ -75,7 +41,27 @@ function loadJSONFile() {
       document.getElementById("speed").innerHTML = "Speed:  " + data.results[0].powerstats.speed;
       document.getElementById("strength").innerHTML = "Strength:  " + data.results[0].powerstats.strength;
       document.getElementById("hero-stats").innerHTML = "here are the speed stats:" + data.results[0].powerstats.speed;
+    
+    
     })
+
 };
-// console.log("step 2 done.");
+
+function loadGifs(){
+  let input = document.getElementById('searchInput').value
+  var searchURL2 = giphyAPI + input + apikey;
+  console.log(searchURL2);
+  fetch(searchURL2)
+  .then(function (response) {
+    return response.json();
+  }) 
+  .then(function (data){
+    console.log(data);
+    document.getElementById("gif1").setAttribute("src", data.data[0].images.original.url);
+    document.getElementById("gif2").setAttribute("src", data.data[1].images.original.url);
+    document.getElementById("gif3").setAttribute("src", data.data[2].images.original.url);
+  })
+}
+
 console.log("step 3 done.");
+
