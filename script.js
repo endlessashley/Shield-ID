@@ -1,20 +1,24 @@
-
-  document.getElementById("submit").addEventListener("click",function() {
-    event.preventDefault();
-    let input = document.getElementById('searchInput').value
-    // var input = document.getElementById("searchInput").value;
-    loadJSONFile(input);
-    loadGifs(input);
-    addHistory();
+//executes function based on button click and text input on form
+document.getElementById("submit").addEventListener("click", function () {
+  event.preventDefault();
+  let input = document.getElementById('searchInput').value
+  loadJSONFile(input);
+  addHistory();
 })
 
 
-
+//global variables used for APIs which will be edited and executed in respective functions
+//based on user input
 var heroAPI = "https://cors-anywhere.herokuapp.com/https://superheroapi.com/api/4431251130239326/search/";
 var giphyAPI = "https://api.giphy.com/v1/gifs/search?q=";
+
+//apikey limit=3 specifies only the top 3 gif hits for API fetch
 var apikey = "&api_key=XnUlKSQw33KcHiZVIv8ReqDGr7nJZwCS&limit=3";
+
+//initial check condition to see if it is user's first search/first
+//time using program
 var firstSearch = false;
-var li 
+
 
 
 
@@ -33,7 +37,7 @@ function loadJSONFile(input) {
       console.log(data.results[0].id);
       document.getElementById("hero-name").innerHTML = data.results[0].name;
       document.getElementById("aliases").innerHTML = "AKA:  " + data.results[0].biography.aliases[0];
-       document.getElementById("full-name").innerHTML = "Full name:  " + data.results[0].biography["full-name"];
+      document.getElementById("full-name").innerHTML = "Full name:  " + data.results[0].biography["full-name"];
       console.log(data.results[0].image.url);
       document.getElementById("thumbnailpic").setAttribute("src", data.results[0].image.url);
       console.log(data.results[0].biography);
@@ -50,83 +54,116 @@ function loadJSONFile(input) {
       document.getElementById("strength").innerHTML = "Strength:  " + data.results[0].powerstats.strength;
       document.getElementById("first").innerHTML = data.results[0].biography["first-appearance"];
 
+      //calls loadGifs using hero name from fetched data
       loadGifs(data.results[0].name)
-    
-    
+
+
     })
 
 };
 
-function loadGifs(input){
-  //let input = document.getElementById('searchInput').value
+//loads gifs based on user input into function
+function loadGifs(input) {
+
+  //concatanates giphy URL to be fetched  
   var searchURL2 = giphyAPI + input + apikey;
   console.log(searchURL2);
+
+  //fetch call
   fetch(searchURL2)
-  .then(function (response) {
-    return response.json();
-  }) 
-  .then(function (data){
-    console.log(data);
-    document.getElementById("gif1").setAttribute("src", data.data[0].images.original.url);
-    document.getElementById("gif2").setAttribute("src", data.data[1].images.original.url);
-    document.getElementById("gif3").setAttribute("src", data.data[2].images.original.url);
-  })
+    .then(function (response) {
+
+      //returns response of API fetch in object form after fetch
+      return response.json();
+    })
+
+    //once json response is returned then specific URLs are added to the sources of
+    // html img elements gif1-3 in order for gifs to appear on page
+    .then(function (data) {
+      console.log(data);
+      document.getElementById("gif1").setAttribute("src", data.data[0].images.original.url);
+      document.getElementById("gif2").setAttribute("src", data.data[1].images.original.url);
+      document.getElementById("gif3").setAttribute("src", data.data[2].images.original.url);
+    })
 }
 
 console.log("step 3 done.");
 
-var addToSearchHistory = document.querySelector('#add-to-search-history');
+//used to select form input
 var searchItem = document.querySelector('#searchInput');
+
+//used to select container to hold searchItems
 var searchList = document.querySelector('#search-list');
 
 
-
+//adds text input on form into local storage
 function addHistory(event) {
-  console.log("testing")
-  // Don't submit the form
-  // Ignore it if the search item is empty
+
+  //Ignores/exits function if search item is empty
   if (searchItem.value.length < 1) return;
   console.log(searchItem.value)
-  // Add item to search list
-  //searchList.innerHTML += '<li>' + searchItem.value + '</li>';
+
+  //used to create a variable 
+  //that hold list of searchItems in localStorage or parses
+  //stringified list of items in local storage into a list
   var saved = JSON.parse(localStorage.getItem('searchItems'));
   console.log(saved)
+
+  //if saved value is null/false set value to empty list
+  //since no searchItems have been added
   if (!saved) {
     saved = []
   };
 
+  //if there are 3 searchItems remove the oldest
+  //in order to make room for new item/limit list length
   if (saved.length === 3) {
     saved.shift()
   }
+  //push new searchItem's value into list
   saved.push(searchItem.value)
+
   // Clear input
   searchItem.value = '';
 
-  // Save the list to localStorage
+  // saves list to localStorage as a string
   localStorage.setItem('searchItems', JSON.stringify(saved));
+
+  //function to create buttons of search items
   displayHistory()
 };
 
 
 function displayHistory() {
+  //parse saved searchItems string from local storage to a list
   var saved = JSON.parse(localStorage.getItem('searchItems'));
-  
   console.log(saved)
-  searchList.innerHTML ="";
-  if(!saved){
+
+  //resets html to contain no buttons
+  searchList.innerHTML = "";
+
+  //exit function if no searchItems present in list
+  if (!saved) {
     return
   };
+
+  //if it is not users first time using app,
+  //automatically loads user's last search
   if (!firstSearch) {
     firstSearch = true
     loadJSONFile(saved[saved.length - 1])
   }
+
+  //adds buttons for each search item onto html 
+  //each button click executes loadJSONFile function which populates page with respective
+  //API info
   for (var i = 0; i < saved.length; i++) {
     var character = saved[i];
     console.log(character)
-    var stringedName = '"' + character +'"'
-    var li = "<button value=" + character + " onclick='loadJSONFile("+stringedName+")'>" + character + "</button>"
+    var stringedName = '"' + character + '"'
+    var li = "<button value=" + character + " onclick='loadJSONFile(" + stringedName + ")'>" + character + "</button>"
     searchList.innerHTML = searchList.innerHTML + li
-    
+
   }
 }
 
