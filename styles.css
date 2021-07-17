@@ -81,13 +81,6 @@ body {
     list-style: none;
   }
 
-  .gifs {
-    padding: 20px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-  }
-
   .img-wrapper{
     display: table;
     height: 140px;
@@ -116,4 +109,6 @@ img {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+  border-bottom: double;
+  border-top: double;
 }
