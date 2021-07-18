@@ -25,6 +25,11 @@ The Marvel Cinematic Universe (MCU) is one of the most popular, highest grossing
 * Application uses a CSS framework other than Bootstrap.
 * Application is interactive (accepts and responds to user input)
 
+## Technologies
+* Superhero API (https://superheroapi.com)
+* Giphy API (https://developers.giphy.com)
+* Pure.CSS (https://purecss.io)
+
 ## Contributors
 * Ashley Tate (endlessashley)
 * Ted Alexander (Ted-Alexander)
