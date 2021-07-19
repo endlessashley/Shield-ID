@@ -21,16 +21,18 @@ var firstSearch = false;
 
 
 
-
+// laods the JSON data from HeroAPI
 function loadJSONFile(input) {
   console.log(input)
   console.log("step 1 done.")
+  //combines set variable with the input to create the url used for the search
   var searchURL = heroAPI + input;
   console.log(searchURL);
   fetch(searchURL)
     .then(function (response) {
       return response.json();
     })
+  //fills in the data fields using the given parameters
     .then(function (data) {
       console.log(data);
       console.log(data.results[0].name);
